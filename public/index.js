@@ -28,7 +28,7 @@ function topFunction() {
 }
 
 $('#password2').on('keyup', function() {
-  if ($('#password1').val() == $('#password2').val()) {
+  if ($('#password').val() == $('#password2').val()) {
     $('#message').html('Passwords matching').css('color', 'green');
   } else{
     $('#message').html('Passwords not matching').css('color', 'red');
