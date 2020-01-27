@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+}
+a { color: inherit; }
+/* Title Section */
+.banner {
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  backface-visibility: hidden;
+  object-fit: cover;
+}
+  @media (min-width : 992px) {
+    .banner{
+      height: 100px;
+    }
+}
+
+.grayscale.blur {
+    filter: brightness(50%) blur(1px) grayscale(100%);
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  margin: 7px;
+}
+
+.brand{
+  display: none;
+  font-size: 2rem;
+  font-family: 'Allura', cursive;
+}
+
+.signup-form{
+  margin-top: 70px;
+}
+
+
+@media (min-width : 992px) {
+  .brand{
+    display: inline-block;
+  }
+  .signup-form{
+    margin-top: 50px ;
+  }
+}
+
+.Oauth{
+  text-align: center;
+}
+
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.bg-col {
+    background-color: #fff;
+}
+.card{
+  border:0px;
+}
+.card-body{
+  padding: 0.5rem;
+}
+i{
+  padding: 0.1rem;
+}

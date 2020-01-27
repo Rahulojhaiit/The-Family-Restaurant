@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sign Up</title>
+  <link href="https://fonts.googleapis.com/css?family=Allura|Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/3b3f3a9aa0.js" crossorigin="anonymous"></script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/signup.css">
+  <link rel="stylesheet" href="css/bootstrap-social.css">
+  <section class="title-section">
+    <img class="banner grayscale blur" src="https://www.samudhra.com/static/images/menuMobile.jpg" alt="front-image">
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+
+      <div class="navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link brand" href="/">The Family Restaurant</a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+  </section>
+
+  <section class="signup-form container-fluid" style="max-width: 600px;">
+    <div class="Oauth">
+
+
+        <div class="card social-block">
+          <div class="card-body">
+            <a class="btn btn-block btn-social btn-facebook" href="" role="button">
+              <i class="fab fa-facebook-f"></i>
+              Sign Up with Facebook
+            </a>
+          </div>
+
+          <div class="card-body">
+            <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+              <i class="fab fa-google"></i>
+              Sign Up with Google
+            </a>
+          </div>
+        </div>
+
+      <p class="divider-text">
+        <span class="bg-col">OR</span>
+      </p>
+    </div>
+
+
+    <form class="container-fluid" action="/signup.html" method="POST">
+      <div class="form-group">
+        <label for="name"><strong>Name</strong></label>
+        <input type="text" name="name" placeholder="Enter your full name" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email"><strong>E-Mail</strong></label>
+        <input type="email" name="username" placeholder="Enter your e-mail" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password1"><strong>Password</strong></label>
+        <input type="password" name="password1" id="password1" placeholder="Enter your password" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password2"><strong>Re-enter password</strong></label>
+        <input type="password" name="password2" id="password2" placeholder="Confirm your password" class="form-control" required>
+      </div>
+      <div class="form-group">
+  <span id='message'></span>
+      </div>
+
+          <button type="submit" name="button" class="btn btn-block btn-dark">Sign-Up</button>
+    </form>
+
+
+    <script type="text/javascript" src="index.js">
+
+    </script>
+  </section>
+</body>
+
+</html>
