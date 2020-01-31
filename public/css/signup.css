@@ -88,3 +88,42 @@ i{
 form input[type="email"] {
     text-transform: lowercase;
 }
+
+
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  font-family: 'Allura', cursive;
+  margin:80px 0 40px;
+}
+
+table{
+  margin-top:0;
+}
+
+@media (min-width : 992px) {
+  table{
+    margin-top:auto;
+  }
+  h1{
+    margin: 0px 0 20px;
+  }
+}
+
+.table .thead-dark th{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+td {
+  text-align: center;
+}
+.options{
+  margin-left: 4px;
+}
+.caption{
+  font-size: 0.9rem;
+  text-align: center;
+  padding:9px;
+  color:gray
+}

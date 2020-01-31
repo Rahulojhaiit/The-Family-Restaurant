@@ -179,17 +179,20 @@ display: block;
     background-position: center;
   filter: brightness(70%) blur(0.7px);
     width: 100%;
-    height: 700px;
+    height: 750px;
     position: relative;
   }
 
   .reg{
     background: url("../images/table.jpg");
     background-position: center;
-
     width: 100%;
     height: 770px;
     position: relative;
+  }
+
+  form input[type="email"] {
+      text-transform: lowercase;
   }
 
   .container{
