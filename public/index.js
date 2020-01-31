@@ -34,3 +34,20 @@ $('#password2').on('keyup', function() {
     $('#message').html('Passwords not matching').css('color', 'red');
 }
 });
+
+//.min = new Date().toISOString().split("T")[0];
+//datePickerId.min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    }
+    if(mm<10){
+        mm='0'+mm
+    }
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("datePickerId").setAttribute("min", today);

@@ -1,0 +1,60 @@
+<%- include('partials/header.ejs') %>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="/signup">Signup </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#footer">Contact Us </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+      <%-include('partials/heading.ejs') %>
+  </section>
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+  <%-include('partials/best-dishes.ejs') %>
+  <%-include('partials/highlights.ejs') %>
+
+
+  <section class="reservation" id="reservation">
+
+    <div class="table unreg">
+      <h1>Book a table</h1>
+      <form class="container">
+        <div class="form-group">
+          <label for="name" class="first"><strong>Name</strong></label>
+          <input type="text" placeholder="Please enter your name" name="name" class="form-control nonreg"  disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="table"><strong>Table For</strong></label>
+          <input type="number" placeholder="Please enter number of persons" name="table"  class="form-control nonreg"   disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="phone"><strong>Phone Number</strong></label>
+          <input type="number" placeholder="Please enter your phone number" name="phone"  class="form-control nonreg"   disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="date"><strong>Date</strong></label>
+          <input type="date"  name="date"  class="form-control nonreg"   disabled>
+      </div>
+
+      <div class="form-group">
+        <label for="bookingt"><strong>Choose a time for your visit:</strong></label>
+        <input type="time" id="bookingt" name="bookingt" class="form-control nonreg" min="09:00" max="22:00"  disabled>
+    </div>
+          <span class="login-request" style="color:#fff;display:block;">Please <a href="/login"><em><u  >login</u></em></a> to book a table</span>
+          <br />
+          <button type="submit" class="btn btn-outline-light" disabled>Book</button>
+      </form>
+
+    </div>
+  </section>
+  <%-include('partials/testimonials.ejs') %>
+  <%- include('partials/footer.ejs') %>

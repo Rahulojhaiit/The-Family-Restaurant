@@ -1,0 +1,70 @@
+<%- include('partials/header.ejs') %>
+
+          <li class="nav-item active">
+            <a class="nav-link">Welcome </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#footer">Contact Us </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+
+      </div>
+
+    </nav>
+
+    <%-include('partials/heading.ejs') %>
+  </section>
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+  <%-include('partials/best-dishes.ejs') %>
+  <%-include('partials/highlights.ejs') %>
+
+
+  <section class="reservation" id="reservation">
+
+    <div class="table reg">
+      <h1>Book a table</h1>
+      <form class="container" action="/bookingmain" method="POST">
+        <div class="form-group">
+          <label for="name" class="first"><strong>Name</strong></label>
+          <input type="text" placeholder="Please enter your name" name="name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="totalpersons"><strong>Table For</strong></label>
+          <input type="number" placeholder="Please enter number of persons" name="totalpersons" min= 0 class="form-control"  required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone"><strong>Phone Number</strong></label>
+          <input type="text" placeholder="Please enter your phone number" name="phone" pattern="[789][0-9]{9}" title="Must contain 10 digits without country code" class="form-control"  required>
+        </div>
+
+        <div class="form-group">
+          <label for="email"><strong>E-mail</strong></label>
+          <input type="email" placeholder="Please enter your email" name="email" class="form-control"  required>
+        </div>
+
+        <div class="form-group">
+          <label for="date"><strong>Date</strong></label>
+          <input type="date"  name="date"  class="form-control"  id="datePickerId"  required>
+      </div>
+
+      <div class="form-group">
+        <label for="bookingt"><strong>Choose a time for your visit:</strong></label>
+        <input type="time" id="bookingt" name="bookingt"  class="form-control" min="09:00" max="22:00" required>
+          <small>We are open from 9am to 10pm</small>
+    </div>
+
+          <button type="submit" class="btn btn-outline-light">Book</button>
+      </form>
+
+    </div>
+  </section>
+<%-include('partials/testimonials.ejs') %>
+  <%- include('partials/footer.ejs') %>

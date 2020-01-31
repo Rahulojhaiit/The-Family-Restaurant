@@ -33,7 +33,7 @@ a { color: inherit; }
 }
 
 .signup-form{
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
 
@@ -83,4 +83,8 @@ a { color: inherit; }
 }
 i{
   padding: 0.1rem;
+}
+
+form input[type="email"] {
+    text-transform: lowercase;
 }
