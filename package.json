@@ -2,8 +2,9 @@
   "name": "restaurents",
   "version": "1.0.0",
   "description": "A family restaurent website",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rahul K. Ojha",
