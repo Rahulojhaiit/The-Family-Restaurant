@@ -12,15 +12,11 @@
     "node": "12.14.1"
   },
   "dependencies": {
-    "alert-node": "^2.1.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "express-flash-messages": "^0.1.1",
-    "express-messages": "^1.0.1",
     "express-session": "^1.17.0",
-    "js-alert": "^1.0.4",
     "lodash": "^4.17.15",
     "md5": "^2.2.1",
     "mongoose": "^5.8.9",
@@ -29,9 +25,8 @@
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth2": "^0.2.0",
-    "passport-google-oauth20": "^2.0.0",
     "passport-local-mongoose": "^6.0.1",
-    "popups": "^1.1.3",
-    "sweetalert2": "^9.7.1"
+
+
   }
 }

@@ -11,7 +11,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
-const flash = require('express-flash-messages');
+
 
 const app = express();
 let personname;
