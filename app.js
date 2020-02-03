@@ -89,27 +89,71 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-passport.use(new GoogleStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-    callbackURL: "http://localhost:3000/auth/google/restaurant",
-  },
-  function(token, tokenSecret, profile, done) {
-    //  console.log(profile);
 
-    personname = _.startCase(_.toLower(profile.displayName));
-    User.findOrCreate({
-      googleId: profile.id,
-      username: profile.displayName,
-      email: profile.email
-    }, function(err, user) {
+// passport.use(new GoogleStrategy({
+//     clientID: process.env.CLIENT_ID,
+//     clientSecret: process.env.CLIENT_SECRET,
+//     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+//     callbackURL: "http://localhost:3000/auth/google/restaurant",
+//   },
+//   function(token, tokenSecret, profile, done) {
+//     //  console.log(profile);
+//
+//     personname = _.startCase(_.toLower(profile.displayName));
+//     User.findOrCreate({
+//       googleId: profile.id,
+//       username: profile.displayName,
+//       email: profile.email
+//     }, function(err, user) {
+//
+//       return done(err, user);
+//     });
+//
+//   }
+// ));
+//
+//
+//
+// app.get('/auth/google',
+//   passport.authenticate('google', {
+//     scope: ['https://www.googleapis.com/auth/plus.login', , 'https://www.googleapis.com/auth/plus.profile.emails.read']
+//   }));
+//
+// app.get('/auth/google/restaurant',
+//   passport.authenticate('google', {
+//     successRedirect: '/bookingmain',
+//     failureRedirect: '/login'
+//   }));
 
-      return done(err, user);
-    });
-
-  }
-));
+// passport.use(new FacebookStrategy({
+//     clientID: process.env.APP_ID,
+//     clientSecret: process.env.APP_SECRET,
+//     callbackURL: "http://localhost:3000/auth/facebook/restaurant",
+//     profileFields: ['id', 'displayName', 'photos', 'email']
+//   },
+//   function(accessToken, refreshToken, profile, cb) {
+//     user = profile.displayName;
+//     User.findOrCreate({
+//       facebookId: profile.id,
+//       username: profile.displayName,
+//       email: profile.email
+//     }, function(err, user) {
+//       return cb(err, user);
+//     });
+//   }
+// ));
+//
+// app.get('/auth/facebook',
+//   passport.authenticate('facebook'));
+//
+// app.get('/auth/facebook/restaurant',
+//   passport.authenticate('facebook', {
+//     failureRedirect: '/login'
+//   }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/bookingmain');
+//   });
 
 app.get("/", function(req, res) {
   if (req.isAuthenticated()) {
@@ -119,57 +163,6 @@ app.get("/", function(req, res) {
     res.render("home");
   }
 
-});
-
-app.get('/auth/google',
-  passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/plus.login', , 'https://www.googleapis.com/auth/plus.profile.emails.read']
-  }));
-
-app.get('/auth/google/restaurant',
-  passport.authenticate('google', {
-    successRedirect: '/bookingmain',
-    failureRedirect: '/login'
-  }));
-
-passport.use(new FacebookStrategy({
-    clientID: process.env.APP_ID,
-    clientSecret: process.env.APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/restaurant",
-    profileFields: ['id', 'displayName', 'photos', 'email']
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    user = profile.displayName;
-    User.findOrCreate({
-      facebookId: profile.id,
-      username: profile.displayName,
-      email: profile.email
-    }, function(err, user) {
-      return cb(err, user);
-    });
-  }
-));
-
-app.get('/auth/facebook',
-  passport.authenticate('facebook'));
-
-app.get('/auth/facebook/restaurant',
-  passport.authenticate('facebook', {
-    failureRedirect: '/login'
-  }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/bookingmain');
-  });
-
-app.get("/", function(req, res) {
-  //res.sendFile(__dirname + "/index.html");
-  if (req.isAuthenticated()) {
-    res.render("bookingmain");
-
-  } else {
-    res.render("index");
-  }
 });
 
 app.get("/menu", function(req, res) {
