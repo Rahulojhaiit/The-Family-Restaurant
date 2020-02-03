@@ -40,7 +40,7 @@
 
   <div class="table reg">
     <h1>Book a table</h1>
-    <form class="container" action="/bookingmain" method="POST">
+    <form class="container" action="/bookingmain" method="POST" onsubmit="myFunction()">
       <div class="form-group">
         <label for="name" class="first"><strong>Name</strong></label>
         <input type="text" placeholder="Please enter your name" name="name" class="form-control"  value= "<%-user %>" disabled>
@@ -73,11 +73,17 @@
         <input type="email" placeholder="Please enter your email" name="email" class="form-control" required>
       </div>
 
-
-      <button type="submit" class="btn btn-outline-light">Book</button>
+      <button type="submit" class="btn btn-outline-light" ">Book</button>
     </form>
 
   </div>
 </section>
+
+<script>
+function myFunction() {
+  alert("Booking Successful!");
+}
+</script>
+
 <%-include('partials/testimonials.ejs') %>
 <%- include('partials/footer.ejs') %>

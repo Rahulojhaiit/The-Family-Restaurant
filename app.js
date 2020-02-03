@@ -6,21 +6,20 @@ const md5 = require("md5");
 const session = require("express-session");
 const _ = require('lodash');
 const passport = require("passport");
-const Swal = require('sweetalert2');
-// var JSAlert = require("js-alert");
 const encrypt = require("mongoose-encryption");
 const passportLocalMongoose = require("passport-local-mongoose");
-//const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
-//const popupS = require('popups');
+const flash = require('express-flash-messages');
+
 const app = express();
 let personname;
 let personemail;
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -40,6 +39,7 @@ mongoose.connect("mongodb://localhost:27017/restaurantDB", {
 });
 
 mongoose.set("useCreateIndex", true);
+ mongoose.set('useFindAndModify', false);
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -96,7 +96,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/restaurant",
   },
   function(token, tokenSecret, profile, done) {
-  //  console.log(profile);
+    //  console.log(profile);
 
     personname = _.startCase(_.toLower(profile.displayName));
     User.findOrCreate({
@@ -114,8 +114,11 @@ passport.use(new GoogleStrategy({
 app.get("/", function(req, res) {
   if (req.isAuthenticated()) {
     res.redirect("/bookingmain");
-  } else
+  } else {
+    // alert.Call();
     res.render("home");
+  }
+
 });
 
 app.get('/auth/google',
@@ -169,28 +172,43 @@ app.get("/", function(req, res) {
   }
 });
 
+app.get("/menu",function(req,res){
+  if(req.isAuthenticated()){
+    res.render("menu-true",{
+      Heading: "Menu",
+    });
+  }
+  else{
+    res.render("menu-false",{
+      Heading: "Menu",
+    });
+  }
+
+})
+
 app.get("/signup", function(req, res) {
   if (req.isAuthenticated()) {
-    res.render("bookingmain");
-
+    res.redirect("/bookingmain");
   } else {
-  res.render("signup", {
-    Heading: "Signup"
-  });
-}
+    res.render("signup", {
+      Heading: "Signup"
+    });
+  }
   //res.sendFile(__dirname + "/public/signup.html");
 });
 
 app.get("/login", function(req, res) {
 
   if (req.isAuthenticated()) {
-    res.render("bookingmain");
+    res.redirect("/bookingmain");
 
   } else {
-  res.render("login", {
-    Heading: "Login"
-  });
-}
+    res.render("login", {
+      Heading: "Login",
+      message: 'false',
+      block: 'none',
+    });
+  }
   //res.sendFile(__dirname + "/public/login.html");
 });
 
@@ -206,7 +224,7 @@ app.get("/bookingmain", function(req, res) {
 
 app.get("/displaybooking", function(req, res) {
   if (req.isAuthenticated()) {
-    console.log("Person Name" + personname);
+    //  console.log("Person Name" + personname);
 
     Reservation.find({
       name: personname
@@ -236,6 +254,14 @@ app.get("/displaybooking", function(req, res) {
   } else {
     res.redirect("login");
   }
+});
+
+app.get("/loginFail", function(req, res) {
+  res.render("Login", {
+    Heading: "Login",
+    block: "block",
+    message: "Wrong Email or Password"
+  });
 });
 
 app.get("/logout", function(req, res) {
@@ -270,6 +296,10 @@ app.post("/signup", function(req, res) {
   }
 });
 
+app.post('/login', passport.authenticate('local', {
+  failureRedirect: '/loginFail'
+}));
+
 app.post("/login", function(req, res) {
   const user = new User({
     username: req.body.username,
@@ -278,28 +308,27 @@ app.post("/login", function(req, res) {
 
 
   req.login(user, function(err) {
-    if (err) {
-      //console.log(err);
-        res.redirect("/Signup");
-    } else {
+    if (err) res.redirect("/Signup");
+    else {
       passport.authenticate("local")(req, res, function() {
         res.render("bookingmain", {
           user: personname
         });
+
       });
     }
+    if (!user) res.redirect("/Signup");
   });
-
-  const requestedEmail = req.body.username;
-
-  User.findOne({username: requestedEmail}, function(err, newt) {
-    if (!err) {
-      personname = _.startCase(_.toLower(newt.name));;
-    }
-    else{
-      res.redirect("/Signup");
-    }
-  });
+  if (req.isAuthenticated()) {
+    const requestedEmail = req.body.username;
+    User.findOne({
+      username: requestedEmail
+    }, function(err, newt) {
+      if (!err) {
+        personname = _.startCase(_.toLower(newt.name));;
+      }
+    });
+  }
 
 });
 
@@ -323,6 +352,52 @@ app.post("/bookingmain", function(req, res) {
     }
   });
 });
+
+app.post("/update", function(req, res) {
+  const userId = req.body.id;
+
+  Reservation.findByIdAndUpdate(userId, {
+    name: personname,
+    table_for: req.body.totalpersons,
+    date: req.body.date,
+    time: req.body.bookingt,
+    email: req.body.email,
+    phone: req.body.phone,
+  },function(err){
+    if(!err)res.redirect("/bookingmain");
+  });
+
+});
+
+app.get("/modify/:uId", function(req, res) {
+  const userId = req.params.uId;
+
+  Reservation.findById(userId, function(err, users) {
+      if (err) console.log(err);
+      else {
+        res.render("editreg", {
+          Heading: "Edit Reservation",
+          user: users
+        });
+      }
+  });
+
+});
+
+app.get("/delete/:userId", function(req, res) {
+
+  const userId = req.params.userId;
+
+  Reservation.deleteOne({
+    _id: userId
+  }, function(err) {
+    if (!err) {
+      res.redirect("/bookingmain");
+    }
+  });
+
+});
+
 
 app.listen(process.env.PORT || 3000, function() {
   console.log("server is running on port 3000");

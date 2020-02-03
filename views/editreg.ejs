@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+ <meta charset="utf-8">
+ <title><%= Heading %></title>
+ <link href="https://fonts.googleapis.com/css?family=Allura|Open+Sans&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <script src="https://kit.fontawesome.com/3b3f3a9aa0.js" crossorigin="anonymous"></script>
+<style media="screen">
+  body {
+    margin: 0;
+  }
+  a { color: inherit; }
+  /* Title Section */
+  .banner {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    backface-visibility: hidden;
+    object-fit: cover;
+  }
+    @media (min-width : 992px) {
+      .banner{
+        height: 100px;
+      }
+  }
+
+  .grayscale.blur {
+      filter: brightness(50%) blur(1px) grayscale(100%);
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    margin: 7px;
+  }
+
+  .brand{
+    display: none;
+    font-size: 2rem;
+    font-family: 'Allura', cursive;
+  }
+
+  .signup-form{
+    margin-top: 100px;
+  }
+
+
+  @media (min-width : 992px) {
+    .brand{
+      display: inline-block;
+    }
+    .signup-form{
+      margin-top: 50px ;
+    }
+  }
+
+  .Oauth{
+    text-align: center;
+  }
+
+  .divider-text {
+      position: relative;
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 15px;
+  }
+  .divider-text span {
+      padding: 7px;
+      font-size: 12px;
+      position: relative;
+      z-index: 2;
+  }
+  .divider-text:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+      top: 55%;
+      left: 0;
+      z-index: 1;
+  }
+
+  .bg-col {
+      background-color: #fff;
+  }
+  .card{
+    border:0px;
+  }
+  .card-body{
+    padding: 0.5rem;
+  }
+  i{
+    padding: 0.1rem;
+  }
+
+  form input[type="email"] {
+      text-transform: lowercase;
+  }
+
+
+  h1 {
+    font-size: 4rem;
+    text-align: center;
+    font-family: 'Allura', cursive;
+    margin: 100px 0 40px;
+  }
+
+  table{
+    margin-top:0;
+  }
+
+  @media (min-width : 992px) {
+    table{
+      margin-top:auto;
+    }
+    h1{
+      margin: 20px 0 20px;
+    }
+  }
+
+  .table .thead-dark th{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+  td {
+    text-align: center;
+  }
+  .options{
+    margin-left: 4px;
+  }
+  .caption{
+    font-size: 0.9rem;
+    text-align: center;
+    padding:9px;
+    color:gray
+  }
+
+</style>
+
+ <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+ <!-- <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"> -->
+ <!-- <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+ <link rel="manifest" href="site.webmanifest"> -->
+</head>
+
+<body>
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
+ <!-- <link rel="stylesheet" href="signup.css"> -->
+ <!-- <link rel="stylesheet" href="css/bootstrap-social.css"> -->
+ <section class="title-section">
+   <img class="banner grayscale blur" src="https://www.samudhra.com/static/images/menuMobile.jpg" alt="front-image">
+
+   <nav class="navbar navbar-expand-lg navbar-dark">
+
+
+<div class="navbar-collapse " id="navbarSupportedContent">
+ <ul class="navbar-nav mr-auto">
+
+   <li class="nav-item active">
+     <a class="nav-link" href="/"><i class="fas fa-home"></i> Home </a>
+   </li>
+
+
+<li class="nav-item active">
+  <a class="nav-link" href="/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+</li>
+</ul>
+<ul class="navbar-nav ml-auto">
+  <li class="nav-item active">
+    <a class="nav-link brand" href="/">The Family Restaurant</a>
+  </li>
+</ul>
+</div>
+
+</nav>
+</section>
+
+<section>
+  <div>
+    <h1>Your Booking</h1>
+    <form class="container" action="/update" method="post" onsubmit="Registration Modified!" >
+      <input type="hidden" name="id" value="<%= user._id %>">
+      <div class="form-group">
+        <label for="name" class="first"><strong>Name</strong></label>
+        <input type="text" placeholder="Please enter your name" name="name" class="form-control"  value= "<%= user.name %>" disabled>
+      </div>
+
+      <div class="form-group">
+        <label for="totalpersons"><strong>Table For</strong></label>
+        <input type="number" placeholder="Please enter number of persons" name="totalpersons" value= "<%= user.table_for %>" min=0 class="form-control" required>
+      </div>
+
+
+      <div class="form-group">
+        <label for="date"><strong>Date</strong></label>
+        <input type="date" name="date" class="form-control" value= "<%= user.date %>" id="datePickerId" required>
+      </div>
+
+      <div class="form-group">
+        <label for="bookingt"><strong>Choose a time for your visit:</strong></label>
+        <input type="time" id="bookingt" name="bookingt" class="form-control" min="09:00" max="22:00" value= "<%= user.time %>" title="We are open from 9am to 10pm" required>
+        <!-- <small>We are open from 9am to 10pm</small> -->
+      </div>
+
+      <div class="form-group">
+        <label for="phone"><strong>Phone Number</strong></label>
+        <input type="text" placeholder="Please enter your phone number" name="phone" pattern="[789][0-9]{9}" value= "<%= user.phone %>" title="Must contain 10 digits without country code" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email"><strong>E-mail</strong></label>
+        <input type="email" placeholder="Please enter your email" name="email" value= "<%= user.email %>" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn btn-dark" >Modify</button>
+    </form>
+
+  </div>
+
+</section>
+
+<script>
+function myFunction() {
+  alert("Booking Successful!");
+}
+</script>

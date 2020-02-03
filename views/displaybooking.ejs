@@ -35,15 +35,16 @@
 <%    users.forEach(function(users){ %>
          <tr>
         <td scope="row"><strong><%= count %></strong></td>
-        <td><%= users.name %></td>
-        <td><%= users.table_for %></td>
-        <td><%= users.date %></td>
-        <td><%= users.time %></td>
-        <td><%= users.email %></td>
-        <td><%= users.phone %></td>
+        <td name="name"><%= users.name %></td>
+        <td name="table_for"><%= users.table_for %></td>
+        <td name="date"><%= users.date %></td>
+        <td name="time"><%= users.time %></td>
+        <td name="email"><%= users.email %></td>
+        <td name="phone"><%= users.phone %></td>
         <td>
-          <a class="btn btn-outline-secondary options" role="button" href="#">Modify</a>
-          <a class="btn btn-outline-danger options" role="button" href="#">Cancel</a>
+  <a class="btn btn-outline-secondary options" role="button"  onclick="return confirm('Do you want to change the reservation details?');"  href="/modify/<%= users._id %>" >Modify</a>
+<a class="btn btn-outline-danger options" role="button" onclick="return confirm('Are you sure you want to cancel this reservation?');" href="/delete/<%= users._id %>" mehod="post">Cancel</a>
+
           </tr>
           <%count++;%>
  <%  }); %>

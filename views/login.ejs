@@ -48,13 +48,19 @@
       <label for="password"><strong>Password</strong></label>
       <input type="password" name="password" placeholder="Enter your password" class="form-control" required>
     </div>
-
     <button type="submit" name="button" class="btn btn-block btn-dark">Login</button>
-      <p class="caption">If you're visiting us for the first time, please <span class="link"><a href="/signup"><em><strong  >Signup</strong></em></a></span> first.</p>
-
+        <a href="#" style="font-size:0.75rem;color:red;float:right;">Forgot Password?</a>
+        <br>
+  <p class="caption">If you're visiting us for the first time, please go to <span class="link"><a href="/signup"><em><strong  >Signup</strong></em></a></span>.</p>
 
   </form>
 
+  <div class="alert alert-dark alert-dismissible fade show container"  style= "display:<%= block %>; text-align:center;">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Warning!</strong> <%= message %>
+    </div>
 </section>
+
+
 </body>
 </html>
