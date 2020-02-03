@@ -64,7 +64,11 @@
 
           <button type="submit" name="button" class="btn btn-block btn-dark">Sign-Up</button>
     </form>
-
+    <br>
+    <div class="alert alert-warning alert-dismissible fade show container"  style= "display:<%= block %>; text-align:center;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Warning!</strong> <%= message %>
+      </div>
 
   </section>
 

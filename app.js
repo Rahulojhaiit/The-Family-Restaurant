@@ -33,7 +33,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/restaurantDB", {
+mongoose.connect("mongodb+srv://admin-rahul:atlas123@cluster0-5jq0d.mongodb.net/restaurantDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -190,7 +190,9 @@ app.get("/signup", function(req, res) {
     res.redirect("/bookingmain");
   } else {
     res.render("signup", {
-      Heading: "Signup"
+      Heading: "Signup",
+        block: "none",
+        message:""
     });
   }
   //res.sendFile(__dirname + "/public/signup.html");
@@ -263,8 +265,13 @@ app.post("/signup", function(req, res) {
       username: _.toLower(req.body.username)
     }, req.body.password, function(err, user) {
       if (err) {
-        console.log(err);
-        res.redirect("/signup");
+        // console.log(err);
+        // res.redirect("/signup");
+        res.render("Signup",{
+          Heading:"Signup",
+          block: "block",
+          message:"User Already Registered!"
+        });
       } else {
         passport.authenticate("local")(req, res, function() {
           //console.log("registration successful");
@@ -275,7 +282,12 @@ app.post("/signup", function(req, res) {
       }
     });
   } else {
-    res.redirect("/signup");
+    // res.redirect("/signup");
+    res.render("Signup",{
+      Heading:"Signup",
+      block: "block",
+      message:"The passwords do not match!"
+    });
   }
 });
 
