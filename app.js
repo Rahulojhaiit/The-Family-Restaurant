@@ -39,7 +39,7 @@ mongoose.connect("mongodb://localhost:27017/restaurantDB", {
 });
 
 mongoose.set("useCreateIndex", true);
- mongoose.set('useFindAndModify', false);
+mongoose.set('useFindAndModify', false);
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -172,14 +172,13 @@ app.get("/", function(req, res) {
   }
 });
 
-app.get("/menu",function(req,res){
-  if(req.isAuthenticated()){
-    res.render("menu-true",{
+app.get("/menu", function(req, res) {
+  if (req.isAuthenticated()) {
+    res.render("menu-true", {
       Heading: "Menu",
     });
-  }
-  else{
-    res.render("menu-false",{
+  } else {
+    res.render("menu-false", {
       Heading: "Menu",
     });
   }
@@ -224,33 +223,17 @@ app.get("/bookingmain", function(req, res) {
 
 app.get("/displaybooking", function(req, res) {
   if (req.isAuthenticated()) {
-    //  console.log("Person Name" + personname);
 
     Reservation.find({
       name: personname
     }, function(err, uss) {
-      //console.log(uss);
-      //  var reqName = _.startCase(_.toLower(uss.name));
-      //console.log("Req Name:"+  reqName);
-      //  if(reqName===personname){
+
       res.render("displaybooking", {
         Heading: "Your Reservations",
-        // name:uss.name,
-        // people:uss.table_for,
-        // date:uss.date,
-        // time:uss.time,
-        // email:uss.email,
-        // phone:uss.phone,
         users: uss
       });
-      //}
-    });
 
-    //
-    // console.log(req.body.username);
-    // res.render("displaybooking", {
-    //   Heading: "Your Reservations"
-    // });
+    });
   } else {
     res.redirect("login");
   }
@@ -273,11 +256,11 @@ app.post("/signup", function(req, res) {
   const password = md5(req.body.password);
   const password2 = md5(req.body.password2);
   personname = _.startCase(_.toLower(req.body.name));
-  personemail = req.body.email;
+  personemail = req.body.username;
   if (password === password2) {
     User.register({
-      name: req.body.name,
-      username: req.body.username
+      name: _.startCase(_.toLower(req.body.name)),
+      username: _.toLower(req.body.username)
     }, req.body.password, function(err, user) {
       if (err) {
         console.log(err);
@@ -301,8 +284,9 @@ app.post('/login', passport.authenticate('local', {
 }));
 
 app.post("/login", function(req, res) {
+  console.log(_.toLower(req.body.username));
   const user = new User({
-    username: req.body.username,
+    username: _.toLower(req.body.username),
     password: req.body.password
   });
 
@@ -314,13 +298,13 @@ app.post("/login", function(req, res) {
         res.render("bookingmain", {
           user: personname
         });
-
       });
     }
     if (!user) res.redirect("/Signup");
   });
+
   if (req.isAuthenticated()) {
-    const requestedEmail = req.body.username;
+    const requestedEmail = _.toLower(req.body.username);
     User.findOne({
       username: requestedEmail
     }, function(err, newt) {
@@ -338,7 +322,7 @@ app.post("/bookingmain", function(req, res) {
     table_for: req.body.totalpersons,
     date: req.body.date,
     time: req.body.bookingt,
-    email: req.body.email,
+    email: _.toLower(req.body.email),
     phone: req.body.phone,
     username: Date.now(),
   });
@@ -361,25 +345,125 @@ app.post("/update", function(req, res) {
     table_for: req.body.totalpersons,
     date: req.body.date,
     time: req.body.bookingt,
-    email: req.body.email,
+    email: _.toLower(req.body.email),
     phone: req.body.phone,
-  },function(err){
-    if(!err)res.redirect("/bookingmain");
+  }, function(err) {
+    if (!err) res.redirect("/bookingmain");
   });
 
+});
+
+app.get("/changepassword", function(req, res) {
+  res.render("editpassword", {
+    Heading: "Edit Password",
+  });
+});
+
+let name1;
+let email1;
+
+app.post("/updatepassword", function(req, res) {
+  name1 =  _.startCase(_.toLower(req.body.name));
+  personname = _.startCase(_.toLower(req.body.name));
+  email1 = _.toLower(req.body.username),
+  console.log(email1);
+
+  User.findOne({username: email1}, function(err, user) {
+    console.log("user "+ user);
+    if(!user) {
+      return res.render("login",{
+        Heading:"Login",
+        block: "block",
+        message:"User Not Found"
+      });
+    }
+     else if (!err) {
+      User.deleteOne({
+        name: name1
+      }, function(err) {
+        res.redirect("/userRevival");
+      });
+    }
+  });
+});
+
+app.post("/enterpassword", function(req, res) {
+  const password = md5(req.body.password);
+  const password2 = md5(req.body.password2);
+  personname = _.startCase(_.toLower(req.body.name));
+  personemail = _.toLower(req.body.email);
+  if (password === password2) {
+    User.register({
+      name:  _.startCase(_.toLower(req.body.name)),
+      username: _.toLower(req.body.username),
+      //username: req.body.username
+    }, req.body.password, function(err, user) {
+      if (err) {
+        console.log(err);
+        res.redirect("/changepassword");
+      } else {
+        passport.authenticate("local")(req, res, function() {
+          //console.log("registration successful");
+          res.render("bookingmain", {
+            user: personname
+          });
+        });
+      }
+    });
+  } else {
+    res.redirect("/changepassword");
+  }
+});
+
+app.get("/userRevival", function(req, res) {
+  res.render("enterpassword", {
+    Heading: "Enter New Password",
+    name: name1,
+    email: email1
+  });
+});
+
+app.post("/userRevival", function(req, res) {
+
+  const password = req.body.password;
+  const password2 = req.body.password2;
+  personname = _.startCase(_.toLower(name1));
+  if (password === password2) {
+    User.register({
+      name:  _.startCase(_.toLower(req.body.name)),
+      username: _.toLower(req.body.username),
+      //username: req.body.username
+    }, req.body.password, function(err, user) {
+      console.log("Working");
+      if (err) {
+        console.log(err);
+        res.redirect("/changepassword");
+      } else {
+        console.log("Perfect");
+        passport.authenticate("local")(req, res, function(err) {
+          console.log("Password Changed");
+          res.render("bookingmain", {
+            user: personname
+          });
+        });
+      }
+    });
+  } else {
+    res.redirect("/changepassword");
+  }
 });
 
 app.get("/modify/:uId", function(req, res) {
   const userId = req.params.uId;
 
   Reservation.findById(userId, function(err, users) {
-      if (err) console.log(err);
-      else {
-        res.render("editreg", {
-          Heading: "Edit Reservation",
-          user: users
-        });
-      }
+    if (err) console.log(err);
+    else {
+      res.render("editreg", {
+        Heading: "Edit Reservation",
+        user: users
+      });
+    }
   });
 
 });

@@ -37,19 +37,19 @@
   </div>
 
 
-  <form class="container-fluid" action="/login" method="POST">
+  <form class="container-fluid" action="/login" method="POST"  id="form1">
 
     <div class="form-group">
       <label for="email"><strong>E-Mail</strong></label>
-      <input type="email" name="username" placeholder="Enter your e-mail" class="form-control" required>
+      <input type="email" name="username" placeholder="Enter your e-mail" class="form-control" required id="search">
     </div>
 
     <div class="form-group">
       <label for="password"><strong>Password</strong></label>
       <input type="password" name="password" placeholder="Enter your password" class="form-control" required>
     </div>
-    <button type="submit" name="button" class="btn btn-block btn-dark">Login</button>
-        <a href="#" style="font-size:0.75rem;color:red;float:right;">Forgot Password?</a>
+    <button type="submit" name="button" class="btn btn-block btn-dark"  onclick="convert();">Login</button>
+        <a href="/changepassword" style="font-size:0.75rem;color:red;float:right;">Forgot Password?</a>
         <br>
   <p class="caption">If you're visiting us for the first time, please go to <span class="link"><a href="/signup"><em><strong  >Signup</strong></em></a></span>.</p>
 
@@ -63,4 +63,12 @@
 
 
 </body>
+<script type="text/javascript">
+  function convert() {
+       var str;
+       var srch=document.getElementById("search");
+       str = srch.value;
+       srch.value=str.toLowerCase();
+   }
+</script>
 </html>

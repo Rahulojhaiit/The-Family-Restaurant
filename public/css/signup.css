@@ -87,9 +87,9 @@ i{
   padding: 0.1rem;
 }
 
-form input[type="email"] {
+/* form input[type="email"] {
     text-transform: lowercase;
-}
+} */
 
 
 h1 {

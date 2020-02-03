@@ -5,6 +5,7 @@ function scrollTo(id) {
   element.scrollIntoView();
 }
 
+
 //Get the button:
 mybutton = document.getElementById("myBtn");
 
@@ -27,7 +28,7 @@ function topFunction() {
   document.documentElement.scrollTop = 00; // For Chrome, Firefox, IE and Opera
 }
 
-$('#password2').on('keyup', function() {
+$('#password,#password2').on('keyup', function() {
   if ($('#password').val() == $('#password2').val()) {
     $('#message').html('Passwords matching').css('color', 'green');
   } else{
