@@ -90,40 +90,40 @@ passport.deserializeUser(function(id, done) {
 });
 
 
-// passport.use(new GoogleStrategy({
-//     clientID: process.env.CLIENT_ID,
-//     clientSecret: process.env.CLIENT_SECRET,
-//     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-//     callbackURL: "http://localhost:3000/auth/google/restaurant",
-//   },
-//   function(token, tokenSecret, profile, done) {
-//     //  console.log(profile);
-//
-//     personname = _.startCase(_.toLower(profile.displayName));
-//     User.findOrCreate({
-//       googleId: profile.id,
-//       username: profile.displayName,
-//       email: profile.email
-//     }, function(err, user) {
-//
-//       return done(err, user);
-//     });
-//
-//   }
-// ));
-//
-//
-//
-// app.get('/auth/google',
-//   passport.authenticate('google', {
-//     scope: ['https://www.googleapis.com/auth/plus.login', , 'https://www.googleapis.com/auth/plus.profile.emails.read']
-//   }));
-//
-// app.get('/auth/google/restaurant',
-//   passport.authenticate('google', {
-//     successRedirect: '/bookingmain',
-//     failureRedirect: '/login'
-//   }));
+passport.use(new GoogleStrategy({
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+    callbackURL: "http://localhost:3000/auth/google/restaurant",
+  },
+  function(token, tokenSecret, profile, done) {
+    //  console.log(profile);
+
+    personname = _.startCase(_.toLower(profile.displayName));
+    User.findOrCreate({
+      googleId: profile.id,
+      username: profile.displayName,
+      email: profile.email
+    }, function(err, user) {
+
+      return done(err, user);
+    });
+
+  }
+));
+
+
+
+app.get('/auth/google',
+  passport.authenticate('google', {
+    scope: ['https://www.googleapis.com/auth/plus.login', , 'https://www.googleapis.com/auth/plus.profile.emails.read']
+  }));
+
+app.get('/auth/google/restaurant',
+  passport.authenticate('google', {
+    successRedirect: '/bookingmain',
+    failureRedirect: '/login'
+  }));
 
 // passport.use(new FacebookStrategy({
 //     clientID: process.env.APP_ID,
