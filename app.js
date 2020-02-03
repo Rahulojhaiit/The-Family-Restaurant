@@ -125,35 +125,35 @@ app.get('/auth/google/restaurant',
     failureRedirect: '/login'
   }));
 
-// passport.use(new FacebookStrategy({
-//     clientID: process.env.APP_ID,
-//     clientSecret: process.env.APP_SECRET,
-//     callbackURL: "http://localhost:3000/auth/facebook/restaurant",
-//     profileFields: ['id', 'displayName', 'photos', 'email']
-//   },
-//   function(accessToken, refreshToken, profile, cb) {
-//     user = profile.displayName;
-//     User.findOrCreate({
-//       facebookId: profile.id,
-//       username: profile.displayName,
-//       email: profile.email
-//     }, function(err, user) {
-//       return cb(err, user);
-//     });
-//   }
-// ));
-//
-// app.get('/auth/facebook',
-//   passport.authenticate('facebook'));
-//
-// app.get('/auth/facebook/restaurant',
-//   passport.authenticate('facebook', {
-//     failureRedirect: '/login'
-//   }),
-//   function(req, res) {
-//     // Successful authentication, redirect home.
-//     res.redirect('/bookingmain');
-//   });
+passport.use(new FacebookStrategy({
+    clientID: process.env.APP_ID,
+    clientSecret: process.env.APP_SECRET,
+    callbackURL: "http://localhost:3000/auth/facebook/restaurant",
+    profileFields: ['id', 'displayName', 'photos', 'email']
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    user = profile.displayName;
+    User.findOrCreate({
+      facebookId: profile.id,
+      username: profile.displayName,
+      email: profile.email
+    }, function(err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/auth/facebook/restaurant',
+  passport.authenticate('facebook', {
+    failureRedirect: '/login'
+  }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/bookingmain');
+  });
 
 app.get("/", function(req, res) {
   if (req.isAuthenticated()) {
