@@ -156,12 +156,13 @@ app.get('/auth/facebook/restaurant',
   });
 
 app.get("/", function(req, res) {
-  if (req.isAuthenticated()) {
-    res.redirect("/bookingmain");
-  } else {
-    // alert.Call();
-    res.render("home");
-  }
+  // if (req.isAuthenticated()) {
+  //   res.redirect("/bookingmain");
+  // } else {
+  //   // alert.Call();
+  //   res.render("home");
+  // }
+  res.redirect("/home.ejs");
 
 });
 
