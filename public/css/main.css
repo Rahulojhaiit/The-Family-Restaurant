@@ -33,6 +33,19 @@ a:hover{ color: inherit; }
   padding-right: 50px;
 }
 
+@media (max-width: 320px){
+  .heading{
+  text-align: center;
+  padding-right: 0;
+  }
+  .heading h1{
+    text-align:center;
+  }
+  .heading p{
+      font-size: 0.95rem;
+  }
+}
+
 h1 {
   font-size: 4rem;
   font-family: 'Allura', cursive;
@@ -82,6 +95,12 @@ p {
   margin-bottom: 50px;
   text-align: center;
 }
+
+  @media (max-width : 375px) {
+    .best-dishes h1 {
+      font-size: 3rem;
+    }
+  }
 
 .best-dishes img {
 
@@ -143,15 +162,16 @@ display: block;
   }
   }
 
+
   .feat-div{
-  padding: 0px;
-  margin: 50px 0;
+      padding: 85px 0;
+    margin: 85px 0;
   }
 
-  @media (min-width : 768px) {
+  @media (max-width : 800px) {
     .feat-div{
-        padding: 100px 0;
-      margin: 100px 0;
+    padding: 0px;
+    margin: 25px 0;
     }
 
   }
@@ -170,9 +190,15 @@ display: block;
   }
 
   .feat-head{
-    font-size: 3rem;
+
     font-family: 'Allura', cursive;
   }
+
+    @media (max-width : 768px) {
+      .feat-head{
+          font-size: 2.5rem;
+      }
+    }
 
   .unreg{
     background: url("../images/table.jpg");
@@ -180,6 +206,7 @@ display: block;
   filter: brightness(70%) blur(0.7px);
     width: 100%;
     height: 750px;
+    padding: 20;
     position: relative;
   }
 
@@ -196,19 +223,28 @@ display: block;
   } */
 
   .container{
-    position: absolute;
-    left: 20px;
-    padding: 10px 20px;
-    margin: 0 50px 50px 50px;
+    position: relative;
     height: auto;
-    max-width: 300px;
+    margin: auto;
+    text-align: center;
     background-color: rgba(220,220,220,0.3);
     border-radius: 5px;
+    padding: 10px 20px;
+    width: 90%;
   }
 
-  @media (min-width : 768px) {
+  @media (min-width : 425px) {
     .container{
-       max-width: 450px;
+      position: absolute;
+      left: 20px;
+      text-align: left;
+      margin: 0 50px 50px 50px;
+      height: auto;
+      border-radius: 5px;
+      padding: 10px 20px;
+      left: 20px;
+      width: 70%;
+      max-width: 500px;
     }
   }
 
@@ -218,7 +254,18 @@ display: block;
 
   .table h1{
       padding: 10px 0 0 75px;
+      text-align: left;
   }
+
+  @media (max-width : 424px) {
+    .table h1{
+      font-size: 3em;
+      text-align: center;
+      padding: 10px 0 0 0;
+    }
+
+  }
+
   .table label{
     font-size: 1rem;
     font-family: 'Open Sans', sans-serif;
@@ -247,17 +294,26 @@ display: block;
   #testimonials {
     height: auto;
     text-align: center;
-
     color: #000;
   }
 
-
+@media (max-width:425px){
+  .testimonials h4{
+    font-size: 1.5rem;
+  }
+}
 
   .testimonial-image {
     height: inherit;
     width: 120px;
     border-radius: 100%;
     margin: 20px;
+  }
+
+  @media (max-width:425px){
+    .testimonial-image{
+      width: 80px;
+    }
   }
 
   .carousel-control-next-icon {
@@ -308,11 +364,23 @@ display: block;
   padding: 0px;
   margin: 50px 0;
   }
+  .applyBorder{
+      border-right: 3px solid white;
+  }
 
-  @media (min-width : 768px) {
+  @media(max-width:500px){
+    .applyBorder{
+      border-right: 0;
+        margin-bottom: 10px;
+    }
+    .footer .fa{
+      font-size: 1.7rem;
+    }
+  }
+
+  @media (min-width : 992px) {
     .footer-div{
         padding: 0px 0;
       margin: 100px 0;
     }
-
   }
