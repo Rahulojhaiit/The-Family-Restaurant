@@ -162,7 +162,7 @@ app.get("/", function(req, res) {
     // alert.Call();
     res.render("home");
   }
-  
+
 
 });
 
@@ -493,6 +493,6 @@ app.get("/delete/:userId", function(req, res) {
 //   port = 3000;
 // }
 
-app.listen( process.env.PORT, function() {
+app.listen( process.env.PORT || 3000, function() {
   console.log("Server started Successfully");
 });
