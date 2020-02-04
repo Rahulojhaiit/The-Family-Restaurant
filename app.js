@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-  secret: process.env.secret,
+  secret: "Thefamilyrestaurant",
   resave: false,
   saveUninitialized: false
 }));
@@ -91,8 +91,10 @@ passport.deserializeUser(function(id, done) {
 
 
 passport.use(new GoogleStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
+    //clientID: process.env.CLIENT_ID,
+    clientID: 184483680174-ptff9kp3mled78e5c2nf7igoea7ijudo.apps.googleusercontent.com,
+    //clientSecret: process.env.CLIENT_SECRET,
+    clientSecret: BdYdn6dH67UUFBznPD2FnYGc
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     callbackURL: "http://localhost:3000/auth/google/restaurant",
   },
@@ -126,8 +128,10 @@ app.get('/auth/google/restaurant',
   }));
 
 passport.use(new FacebookStrategy({
-    clientID: process.env.APP_ID,
-    clientSecret: process.env.APP_SECRET,
+    // clientID: process.env.APP_ID,
+    clientID:2201384640169387,
+    // clientSecret: process.env.APP_SECRET,
+    clientSecret:eb4778cf5e7f74c19ea14cd735dc802c
     callbackURL: "http://localhost:3000/auth/facebook/restaurant",
     profileFields: ['id', 'displayName', 'photos', 'email']
   },
@@ -162,7 +166,7 @@ app.get("/", function(req, res) {
     // alert.Call();
     res.render("home");
   }
-  
+
 
 });
 
