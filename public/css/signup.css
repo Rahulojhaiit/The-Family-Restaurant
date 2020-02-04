@@ -189,23 +189,25 @@ td {
     border: 1px solid black;
     border-radius: 5px;
 }
+
 .entry:hover{
-    /* border: 1px solid gray; */
     height: 50px;
     color:white;
     text-align: left;
-    /* background-color: black; */
     background-image: linear-gradient(to right, gray, black);
     transition: 0.3s;
     font-weight: bold;
     border-radius: 5px;
 }
 
+@media (max-width:500px){
+  .entry{
+    font-size: 0.8rem;
+  }
+}
+
 .right{
   float:right;
-  color
-  /* display: none; */
-  /* text-align:right; */
 }
 
 
@@ -215,29 +217,14 @@ td {
 }
 
 .filterDiv {
-  display: none; /* Hidden by default */
+  display: none;
 }
 
-/* The "show" class is added to the filtered elements */
 .show {
   display: block;
 }
 
-/* Style the buttons */
-/* .btn {
-  border: none;
-  outline: none;
-  padding: 12px 16px;
-  background-color: #f1f1f1;
-  cursor: pointer;
-} */
 
-/* Add a light grey background on mouse-over */
-/* .btn:hover {
-  background-color: #ddd;
-} */
-
-/* Add a dark background to the active button */
 .btn.tactive {
   background-color: #666;
   color: white;

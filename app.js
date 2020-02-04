@@ -94,7 +94,7 @@ passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-    callbackURL: "http://localhost:3000/auth/google/restaurant",
+    callbackURL: "https://desolate-brook-81890.herokuapp.com/auth/google/restaurant",
   },
   function(token, tokenSecret, profile, done) {
     //  console.log(profile);
@@ -128,7 +128,7 @@ app.get('/auth/google/restaurant',
 passport.use(new FacebookStrategy({
     clientID: process.env.APP_ID,
     clientSecret: process.env.APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/restaurant",
+    callbackURL: "https://desolate-brook-81890.herokuapp.com/auth/facebook/restaurant",
     profileFields: ['id', 'displayName', 'photos', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {
