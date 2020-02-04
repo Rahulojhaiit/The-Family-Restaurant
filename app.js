@@ -34,6 +34,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose.connect("mongodb+srv://admin-rahul:atlas123@cluster0-5jq0d.mongodb.net/restaurantDB", {
+//mongoose.connect("mongodb://localhost:27017/restaurantDB", {
+
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -237,7 +239,7 @@ app.get("/displaybooking", function(req, res) {
 });
 
 app.get("/loginFail", function(req, res) {
-  res.render("Login", {
+  res.render("login", {
     Heading: "Login",
     block: "block",
     message: "Wrong Email or Password"

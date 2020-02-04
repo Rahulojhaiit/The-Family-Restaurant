@@ -16,38 +16,40 @@
 <br>
 <br>
 <h1>Your Reservations</h1>
-<table class="table container-fluid table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">People</th>
-      <th scope="col">Date</th>
-      <th scope="col">Time</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Options</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="table-responsive">
+  <table class="table container-fluid  table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">People</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
 
-<% var count =1; %>
-<%    users.forEach(function(users){ %>
-         <tr>
-        <td scope="row"><strong><%= count %></strong></td>
-        <td name="name"><%= users.name %></td>
-        <td name="table_for"><%= users.table_for %></td>
-        <td name="date"><%= users.date %></td>
-        <td name="time"><%= users.time %></td>
-        <td name="email"><%= users.email %></td>
-        <td name="phone"><%= users.phone %></td>
-        <td>
-  <a class="btn btn-outline-secondary options" role="button"  onclick="return confirm('Do you want to change the reservation details?');"  href="/modify/<%= users._id %>" >Modify</a>
-<a class="btn btn-outline-danger options" role="button" onclick="return confirm('Are you sure you want to cancel this reservation?');" href="/delete/<%= users._id %>" mehod="post">Cancel</a>
+  <% var count =1; %>
+  <%    users.forEach(function(users){ %>
+           <tr>
+          <td scope="row"><strong><%= count %></strong></td>
+          <td name="name"><%= users.name %></td>
+          <td name="table_for"><%= users.table_for %></td>
+          <td name="date"><%= users.date %></td>
+          <td name="time"><%= users.time %></td>
+          <td name="email"><%= users.email %></td>
+          <td name="phone"><%= users.phone %></td>
+          <td>
+    <a class="btn btn-outline-secondary options" role="button"  onclick="return confirm('Do you want to change the reservation details?');"  href="/modify/<%= users._id %>" >Modify</a>
+  <a class="btn btn-outline-danger options" role="button" onclick="return confirm('Are you sure you want to cancel this reservation?');" href="/delete/<%= users._id %>" mehod="post">Cancel</a>
 
-          </tr>
-          <%count++;%>
- <%  }); %>
+            </tr>
+            <%count++;%>
+   <%  }); %>
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

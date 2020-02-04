@@ -155,7 +155,7 @@
  <!-- <link rel="stylesheet" href="signup.css"> -->
  <!-- <link rel="stylesheet" href="css/bootstrap-social.css"> -->
  <section class="title-section">
-   <img class="banner grayscale blur" src="https://www.samudhra.com/static/images/menuMobile.jpg" alt="front-image">
+       <img class="banner  blur" src="/images/header.jpg" alt="header-image">
 
    <nav class="navbar navbar-expand-lg navbar-dark">
 
@@ -185,7 +185,7 @@
 <section>
   <div>
     <h1>Your Booking</h1>
-    <form class="container" action="/update" method="post" onsubmit="Registration Modified!" >
+    <form class="container" action="/update" method="post" onsubmit="myFunction()" >
       <input type="hidden" name="id" value="<%= user._id %>">
       <div class="form-group">
         <label for="name" class="first"><strong>Name</strong></label>
@@ -220,6 +220,8 @@
       </div>
 
       <button type="submit" class="btn btn-dark" >Modify</button>
+      <br>
+
     </form>
 
   </div>
@@ -228,6 +230,6 @@
 
 <script>
 function myFunction() {
-  alert("Booking Successful!");
+  alert("Registration Modified!");
 }
 </script>
