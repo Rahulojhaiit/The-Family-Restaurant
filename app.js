@@ -132,10 +132,11 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'displayName', 'photos', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {
+      personname = _.startCase(_.toLower(profile.displayName));
     user = profile.displayName;
     User.findOrCreate({
       facebookId: profile.id,
-      username: profile.displayName,
+      username: _.startCase(_.toLower(profile.displayName)),
       email: profile.email
     }, function(err, user) {
       return cb(err, user);
